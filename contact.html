@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aurum Café & Bistro — Contact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --warm-white: #faf8f3;
+      --terracotta: #c1674a;
+      --terracotta-dark: #a85538;
+      --forest: #2e3d2f;
+      --forest-light: #3a4e3b;
+      --text-dark: #2a2118;
+      --text-mid: #5a4e42;
+      --text-light: #9a8e82;
+      --border: #ddd5c5;
+      --input-bg: #fdfaf5;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--warm-white);
+      color: var(--text-dark);
+      font-weight: 300;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: var(--warm-white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dark);
+    }
+    .nav-logo .sub {
+      font-size: 9px; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--text-light); margin-top: 2px;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; color: var(--text-mid); transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-dark); }
+    .btn-nav {
+      background: var(--terracotta); color: #fff; border: none;
+      padding: 10px 22px; font-family: 'Jost', sans-serif;
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      cursor: pointer; border-radius: 2px; transition: background 0.2s;
+    }
+    .btn-nav:hover { background: var(--terracotta-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(150deg, #2e3d2f 0%, #3a5030 45%, #8a7050 100%);
+    }
+    /* Arch wall panels */
+    .hero-arches {
+      position: absolute; inset: 0;
+      pointer-events: none;
+    }
+    .arch {
+      position: absolute;
+      bottom: 0;
+      border-radius: 50% 50% 0 0 / 60% 60% 0 0;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .arch-1 { width: 200px; height: 260px; right: 80px; background: rgba(58,80,48,0.5); }
+    .arch-2 { width: 160px; height: 220px; right: 260px; background: rgba(48,68,38,0.4); }
+    .arch-3 { width: 130px; height: 180px; right: 410px; background: rgba(40,58,30,0.3); }
+
+    /* hanging lamps */
+    .lamps {
+      position: absolute; top: 0; right: 0; left: 0;
+      pointer-events: none;
+    }
+    .lamp { position: absolute; display: flex; flex-direction: column; align-items: center; }
+    .lamp-cord { width: 1px; background: rgba(200,170,100,0.5); }
+    .lamp-shade {
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-top: 22px solid rgba(220,180,100,0.75);
+    }
+    .lamp-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(28px);
+      pointer-events: none;
+    }
+
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(20,28,18,0.72) 45%, rgba(20,28,18,0.15) 100%);
+    }
+
+    /* decorative chairs + table in hero */
+    .hero-scene-svg {
+      position: absolute; right: 0; top: 0;
+      width: 60%; height: 100%;
+      opacity: 0.55;
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 64px;
+    }
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px; font-weight: 400;
+      color: var(--cream); line-height: 1.1; margin-bottom: 12px;
+    }
+    .hero-content p {
+      font-size: 13px; color: rgba(245,240,232,0.65); letter-spacing: 0.04em;
+    }
+
+    /* ── CONTACT BODY ── */
+    .contact-body {
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 0;
+      padding: 64px 60px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Info column */
+    .contact-info { padding-right: 48px; border-right: 1px solid var(--border); }
+    .info-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 32px;
+    }
+    .info-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--terracotta);
+    }
+    .info-text h4 {
+      font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-mid);
+      margin-bottom: 4px;
+    }
+    .info-text p {
+      font-size: 13px; color: var(--text-dark); line-height: 1.7;
+    }
+
+    /* Form column */
+    .contact-form { padding-left: 48px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-mid); margin-bottom: 7px;
+    }
+    .form-control {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 11px 14px;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px; font-weight: 300;
+      color: var(--text-dark);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-control::placeholder { color: var(--text-light); }
+    .form-control:focus { border-color: var(--terracotta); }
+    textarea.form-control {
+      resize: vertical; min-height: 110px; padding-top: 12px;
+    }
+    .btn-send {
+      width: 100%;
+      background: var(--terracotta); color: #fff; border: none;
+      padding: 15px;
+      font-family: 'Jost', sans-serif;
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      cursor: pointer; border-radius: 2px; margin-top: 8px;
+      transition: background 0.25s, transform 0.1s;
+    }
+    .btn-send:hover { background: var(--terracotta-dark); }
+    .btn-send:active { transform: scale(0.998); }
+
+    /* ── MAP ── */
+    .map-section {
+      width: 100%;
+      height: 280px;
+      background: #e8e4da;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .map-svg {
+      width: 100%; height: 100%;
+    }
+
+    /* ── FOLLOW US ── */
+    .follow-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 220px;
+      background: var(--forest);
+    }
+    .follow-text {
+      padding: 52px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .follow-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px; font-weight: 400;
+      color: var(--cream); margin-bottom: 14px;
+    }
+    .follow-text p {
+      font-size: 12px; line-height: 1.8;
+      color: rgba(200,190,170,0.7); max-width: 280px; margin-bottom: 28px;
+    }
+    .social-icons { display: flex; gap: 12px; }
+    .social-icon {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(200,190,170,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(200,190,170,0.7);
+      text-decoration: none; font-size: 14px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-icon:hover { border-color: var(--cream); color: var(--cream); }
+
+    /* Coffee image side */
+    .follow-image {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(140deg, #3a2818 0%, #7a5030 50%, #c8a060 100%);
+    }
+    .follow-image::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 40% 40%, rgba(220,160,80,0.4) 0%, transparent 65%);
+    }
+    .coffee-svg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      opacity: 0.8;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--forest-light);
+      padding: 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream);
+    }
+    .footer-logo .sub {
+      font-size: 8px; letter-spacing: 0.28em;
+      text-transform: uppercase; color: #7a9a7b; margin-top: 2px;
+    }
+    .footer-col h5 {
+      font-size: 9px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: #7a9a7b; margin-bottom: 6px;
+    }
+    .footer-col p { font-size: 11px; color: #a0988e; line-height: 1.7; }
+    .footer-social { display: flex; gap: 10px; margin-top: 8px; }
+    .footer-social a {
+      width: 26px; height: 26px;
+      border: 1px solid #4a6a4b; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #8aaa8b; text-decoration: none; font-size: 10px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .footer-social a:hover { border-color: #8aaa8b; color: var(--cream); }
+
+    @media (max-width: 720px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero-content { padding: 0 28px; }
+      .hero-content h1 { font-size: 40px; }
+      .contact-body { grid-template-columns: 1fr; padding: 40px 24px; }
+      .contact-info { padding-right: 0; border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 36px; margin-bottom: 36px; }
+      .contact-form { padding-left: 0; }
+      .follow-section { grid-template-columns: 1fr; }
+      .follow-image { height: 200px; }
+      .follow-text { padding: 40px 28px; }
+      footer { flex-direction: column; gap: 24px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="name">Aurum</span>
+    <span class="sub">Café &amp; Bistro</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="reservations.html">Reservations</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <a href="reservations.html" class="btn-solid">Reserve a Table</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <!-- Arch panels -->
+  <div class="hero-arches">
+    <div class="arch arch-1"></div>
+    <div class="arch arch-2"></div>
+    <div class="arch arch-3"></div>
+  </div>
+  <!-- Hanging lamps (SVG) -->
+  <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0.8"
+       viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+    <!-- Lamp cords -->
+    <line x1="700" y1="0" x2="700" y2="55" stroke="#c8a850" stroke-width="1.2" opacity="0.6"/>
+    <line x1="860" y1="0" x2="860" y2="40" stroke="#c8a850" stroke-width="1.2" opacity="0.5"/>
+    <line x1="980" y1="0" x2="980" y2="50" stroke="#c8a850" stroke-width="1.2" opacity="0.4"/>
+    <!-- Lamp shades -->
+    <path d="M672 55 L728 55 L718 90 L682 90Z" fill="#d4b060" opacity="0.75"/>
+    <path d="M836 40 L884 40 L876 72 L844 72Z" fill="#d4b060" opacity="0.65"/>
+    <path d="M956 50 L1004 50 L997 78 L963 78Z" fill="#d4b060" opacity="0.55"/>
+    <!-- Lamp glows -->
+    <radialGradient id="lg1" cx="50%" cy="0%" r="60%">
+      <stop offset="0%" stop-color="#f0c040" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#f0c040" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lg2" cx="50%" cy="0%" r="60%">
+      <stop offset="0%" stop-color="#f0c040" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#f0c040" stop-opacity="0"/>
+    </radialGradient>
+    <ellipse cx="700" cy="100" rx="120" ry="80" fill="url(#lg1)"/>
+    <ellipse cx="860" cy="82" rx="100" ry="65" fill="url(#lg2)"/>
+    <ellipse cx="980" cy="90" rx="90" ry="60" fill="url(#lg2)"/>
+  </svg>
+  <div class="hero-overlay"></div>
+  <!-- Interior dining scene -->
+  <svg class="hero-scene-svg" viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="sceneWarm" cx="50%" cy="60%" r="70%">
+        <stop offset="0%" stop-color="#c8a050" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#c8a050" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="720" height="300" fill="url(#sceneWarm)"/>
+    <!-- Floor line -->
+    <rect x="0" y="250" width="720" height="50" fill="#2a1c10" opacity="0.6"/>
+    <!-- Table -->
+    <ellipse cx="360" cy="255" rx="180" ry="22" fill="#3a2818" opacity="0.8"/>
+    <rect x="220" y="195" width="280" height="60" rx="3" fill="#3a2010" opacity="0.55"/>
+    <rect x="216" y="193" width="288" height="6" rx="2" fill="#e8d8b0" opacity="0.22"/>
+    <!-- Chairs -->
+    <g fill="#1a120a" opacity="0.8">
+      <path d="M160 195 Q160 155 200 150 Q240 155 240 195 L235 195 Q235 160 200 156 Q165 160 165 195Z"/>
+      <rect x="160" y="195" width="80" height="8" rx="2"/>
+      <rect x="163" y="203" width="7" height="30" rx="2"/>
+      <rect x="230" y="203" width="7" height="30" rx="2"/>
+      <path d="M480 195 Q480 155 520 150 Q560 155 560 195 L555 195 Q555 160 520 156 Q485 160 485 195Z"/>
+      <rect x="480" y="195" width="80" height="8" rx="2"/>
+      <rect x="483" y="203" width="7" height="30" rx="2"/>
+      <rect x="550" y="203" width="7" height="30" rx="2"/>
+    </g>
+    <!-- Table items -->
+    <g fill="none" stroke="#d4c8a8" stroke-width="1.2" opacity="0.65">
+      <path d="M310 192 Q310 216 298 224 L322 224 Q310 216 310 192Z"/>
+      <rect x="307.5" y="224" width="5" height="16" rx="1"/>
+      <rect x="300" y="240" width="20" height="2.5" rx="1"/>
+      <path d="M400 192 Q400 216 388 224 L412 224 Q400 216 400 192Z"/>
+      <rect x="397.5" y="224" width="5" height="16" rx="1"/>
+      <rect x="390" y="240" width="20" height="2.5" rx="1"/>
+    </g>
+    <!-- Candle -->
+    <rect x="358" y="180" width="8" height="28" rx="2" fill="#f0e8c0" opacity="0.65"/>
+    <radialGradient id="cflame" cx="50%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="#ffcc40" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ff8820" stop-opacity="0"/>
+    </radialGradient>
+    <ellipse cx="362" cy="176" rx="7" ry="12" fill="url(#cflame)"/>
+    <!-- Flowers -->
+    <line x1="362" y1="180" x2="348" y2="148" stroke="#5a7840" stroke-width="1.2"/>
+    <line x1="362" y1="180" x2="365" y2="140" stroke="#5a7840" stroke-width="1.2"/>
+    <line x1="362" y1="180" x2="378" y2="150" stroke="#5a7840" stroke-width="1.2"/>
+    <circle cx="348" cy="144" r="10" fill="#c07060" opacity="0.75"/>
+    <circle cx="365" cy="136" r="12" fill="#d08070" opacity="0.7"/>
+    <circle cx="378" cy="146" r="9" fill="#b86050" opacity="0.65"/>
+  </svg>
+  <div class="hero-content">
+    <h1>Get in Touch</h1>
+    <p>We'd love to hear from you.</p>
+  </div>
+</section>
+
+<!-- CONTACT BODY -->
+<section class="contact-body">
+  <!-- Info -->
+  <div class="contact-info">
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      </div>
+      <div class="info-text">
+        <h4>Visit Us</h4>
+        <p>23, Greenways Road,<br/>Bengaluru 560001, India</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.04a16 16 0 006.29 6.29l1.22-1.22a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+      </div>
+      <div class="info-text">
+        <h4>Call Us</h4>
+        <p>+91 98765 43210</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </div>
+      <div class="info-text">
+        <h4>Email Us</h4>
+        <p>hello@aurumcafe.com</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <div class="info-text">
+        <h4>Open Daily</h4>
+        <p>8:00 AM – 11:00 PM</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="contact-form">
+    <div class="form-group">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" class="form-control" placeholder="Enter your name"/>
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" class="form-control" placeholder="Enter your email"/>
+    </div>
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" class="form-control" placeholder="Write your message..."></textarea>
+    </div>
+    <button class="btn-send">Send Message</button>
+  </div>
+</section>
+
+<!-- MAP SECTION -->
+<div class="map-section">
+  <svg class="map-svg" viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg">
+    <!-- Map background -->
+    <rect width="1200" height="280" fill="#e8e0d0"/>
+
+    <!-- Road network -->
+    <!-- Major horizontal roads -->
+    <rect x="0" y="95" width="1200" height="14" fill="#fff" opacity="0.9"/>
+    <rect x="0" y="165" width="1200" height="10" fill="#fff" opacity="0.8"/>
+    <rect x="0" y="215" width="1200" height="8" fill="#fff" opacity="0.7"/>
+    <rect x="0" y="48" width="1200" height="8" fill="#fff" opacity="0.7"/>
+
+    <!-- Major vertical roads -->
+    <rect x="148" y="0" width="12" height="280" fill="#fff" opacity="0.9"/>
+    <rect x="320" y="0" width="10" height="280" fill="#fff" opacity="0.8"/>
+    <rect x="520" y="0" width="14" height="280" fill="#fff" opacity="0.9"/>
+    <rect x="740" y="0" width="10" height="280" fill="#fff" opacity="0.8"/>
+    <rect x="920" y="0" width="8" height="280" fill="#fff" opacity="0.7"/>
+    <rect x="1080" y="0" width="8" height="280" fill="#fff" opacity="0.7"/>
+
+    <!-- City blocks (varying sizes) -->
+    <rect x="0" y="0" width="140" height="88" fill="#ddd5c2" rx="1"/>
+    <rect x="168" y="0" width="144" height="88" fill="#e0d8c8" rx="1"/>
+    <rect x="338" y="0" width="174" height="88" fill="#d8d0be" rx="1"/>
+    <rect x="168" y="115" width="144" height="42" fill="#ddd5c2" rx="1"/>
+    <rect x="338" y="115" width="174" height="42" fill="#e0d8c8" rx="1"/>
+    <rect x="538" y="0" width="194" height="88" fill="#ddd5c2" rx="1"/>
+    <rect x="756" y="0" width="156" height="88" fill="#e0d8c8" rx="1"/>
+    <rect x="928" y="0" width="144" height="88" fill="#d8d0be" rx="1"/>
+    <rect x="1096" y="0" width="104" height="88" fill="#e0d8c8" rx="1"/>
+
+    <rect x="0" y="115" width="140" height="42" fill="#e0d8c8" rx="1"/>
+    <rect x="538" y="115" width="194" height="42" fill="#ddd5c2" rx="1"/>
+    <rect x="756" y="115" width="156" height="42" fill="#e0d8c8" rx="1"/>
+    <rect x="928" y="115" width="144" height="42" fill="#d8d0be" rx="1"/>
+    <rect x="1096" y="115" width="104" height="42" fill="#ddd5c2" rx="1"/>
+
+    <rect x="0" y="183" width="140" height="24" fill="#ddd5c2" rx="1"/>
+    <rect x="168" y="183" width="144" height="24" fill="#e2dac8" rx="1"/>
+    <rect x="338" y="183" width="174" height="24" fill="#ddd5c2" rx="1"/>
+    <rect x="538" y="183" width="194" height="24" fill="#e0d8c8" rx="1"/>
+    <rect x="756" y="183" width="156" height="24" fill="#d8d0be" rx="1"/>
+    <rect x="928" y="183" width="144" height="24" fill="#ddd5c2" rx="1"/>
+    <rect x="1096" y="183" width="104" height="24" fill="#e0d8c8" rx="1"/>
+
+    <rect x="0" y="231" width="140" height="49" fill="#e0d8c8" rx="1"/>
+    <rect x="168" y="231" width="144" height="49" fill="#ddd5c2" rx="1"/>
+    <rect x="338" y="231" width="174" height="49" fill="#e2dac8" rx="1"/>
+    <rect x="538" y="231" width="194" height="49" fill="#ddd5c2" rx="1"/>
+    <rect x="756" y="231" width="156" height="49" fill="#e0d8c8" rx="1"/>
+    <rect x="928" y="231" width="144" height="49" fill="#d8d0be" rx="1"/>
+    <rect x="1096" y="231" width="104" height="49" fill="#ddd5c2" rx="1"/>
+
+    <!-- Park / green area -->
+    <rect x="360" y="120" width="150" height="38" rx="4" fill="#b8d0a0" opacity="0.7"/>
+    <rect x="560" y="120" width="170" height="38" rx="4" fill="#c0d8a8" opacity="0.6"/>
+
+    <!-- Road labels (subtle) -->
+    <text x="10" y="92" font-family="Jost,sans-serif" font-size="7" fill="#9a8e78" opacity="0.7" letter-spacing="0.05em">GREENWAYS ROAD</text>
+    <text x="10" y="162" font-family="Jost,sans-serif" font-size="7" fill="#9a8e78" opacity="0.7" letter-spacing="0.05em">MG ROAD</text>
+    <text x="154" y="12" font-family="Jost,sans-serif" font-size="6" fill="#9a8e78" opacity="0.7" transform="rotate(90,154,12)" letter-spacing="0.04em">INDIRANAGAR</text>
+    <text x="524" y="12" font-family="Jost,sans-serif" font-size="6" fill="#9a8e78" opacity="0.7" transform="rotate(90,524,12)" letter-spacing="0.04em">RICHMOND RD</text>
+
+    <!-- Location names -->
+    <text x="220" y="58" font-family="Jost,sans-serif" font-size="8" fill="#6a5e50" opacity="0.6" text-anchor="middle">INDIRANAGAR</text>
+    <text x="840" y="55" font-family="Jost,sans-serif" font-size="8" fill="#6a5e50" opacity="0.6" text-anchor="middle">MALLASURU</text>
+    <text x="1000" y="55" font-family="Jost,sans-serif" font-size="8" fill="#6a5e50" opacity="0.6" text-anchor="middle">EJIPURA</text>
+    <text x="54" y="145" font-family="Jost,sans-serif" font-size="7" fill="#6a5e50" opacity="0.55" text-anchor="middle">BENSON TOWN</text>
+    <text x="630" y="148" font-family="Jost,sans-serif" font-size="7" fill="#6a5e50" opacity="0.55" text-anchor="middle">DOMLUR</text>
+    <text x="840" y="205" font-family="Jost,sans-serif" font-size="8" fill="#6a5e50" opacity="0.6" text-anchor="middle">BOIKURA</text>
+    <text x="1140" y="205" font-family="Jost,sans-serif" font-size="8" fill="#6a5e50" opacity="0.6" text-anchor="middle">DOMLUR</text>
+    <text x="220" y="258" font-family="Jost,sans-serif" font-size="8" fill="#6a5e50" opacity="0.6" text-anchor="middle">LANGFORD TOWN</text>
+
+    <!-- Location pin -->
+    <g transform="translate(516, 78)">
+      <circle cx="0" cy="0" r="22" fill="rgba(193,103,74,0.18)"/>
+      <circle cx="0" cy="0" r="14" fill="rgba(193,103,74,0.25)"/>
+      <path d="M0 -22 C-12 -22 -20 -14 -20 -5 C-20 8 0 24 0 24 C0 24 20 8 20 -5 C20 -14 12 -22 0 -22Z" fill="#c1674a"/>
+      <circle cx="0" cy="-5" r="6" fill="#fff"/>
+    </g>
+    <!-- Pin label -->
+    <rect x="536" y="50" width="90" height="20" rx="3" fill="#fff" opacity="0.92"/>
+    <text x="581" y="64" font-family="Jost,sans-serif" font-size="9" fill="#2a2118" text-anchor="middle" font-weight="400" letter-spacing="0.04em">AURUM CAFÉ</text>
+
+    <!-- Compass rose (subtle) -->
+    <g transform="translate(1160, 240)" opacity="0.35">
+      <circle cx="0" cy="0" r="16" fill="none" stroke="#8a7860" stroke-width="1"/>
+      <line x1="0" y1="-12" x2="0" y2="12" stroke="#8a7860" stroke-width="1.2"/>
+      <line x1="-12" y1="0" x2="12" y2="0" stroke="#8a7860" stroke-width="1.2"/>
+      <text x="0" y="-15" font-family="Jost,sans-serif" font-size="8" fill="#8a7860" text-anchor="middle">N</text>
+    </g>
+
+    <!-- Google Maps watermark style -->
+    <text x="20" y="272" font-family="Jost,sans-serif" font-size="8" fill="#8a8070" opacity="0.55">Map data</text>
+  </svg>
+</div>
+
+<!-- FOLLOW US -->
+<div class="follow-section">
+  <div class="follow-text">
+    <h2>Follow Us</h2>
+    <p>Stay connected for updates, events and more delicious moments.</p>
+    <div class="social-icons">
+      <!-- Instagram -->
+      <a href="#" class="social-icon" title="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <circle cx="12" cy="12" r="5"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <!-- Facebook -->
+      <a href="#" class="social-icon" title="Facebook">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+        </svg>
+      </a>
+      <!-- Pinterest / other -->
+      <a href="#" class="social-icon" title="Pinterest">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.76 1.24-5.26 1.24-5.26s-.32-.63-.32-1.57c0-1.47.85-2.57 1.91-2.57.9 0 1.34.68 1.34 1.49 0 .91-.58 2.27-.88 3.53-.25 1.06.53 1.92 1.57 1.92 1.88 0 3.14-2.41 3.14-5.26 0-2.18-1.48-3.7-3.58-3.7-2.44 0-3.87 1.83-3.87 3.72 0 .74.28 1.52.64 1.95.07.08.08.16.06.24-.07.26-.22.84-.24.96-.04.16-.13.19-.3.12-1.12-.52-1.82-2.17-1.82-3.49 0-2.84 2.06-5.45 5.94-5.45 3.12 0 5.55 2.23 5.55 5.2 0 3.1-1.95 5.6-4.66 5.6-.91 0-1.77-.47-2.06-1.03l-.56 2.1c-.2.79-.75 1.77-1.12 2.37.84.26 1.74.4 2.67.4 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+        </svg>
+      </a>
+      <!-- Twitter/X -->
+      <a href="#" class="social-icon" title="Twitter">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Coffee image -->
+  <div class="follow-image">
+    <svg class="coffee-svg" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="coffeeBg" cx="45%" cy="45%" r="60%">
+          <stop offset="0%" stop-color="#d4a060" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#8a5828" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="cupGrad" cx="40%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#f8f0e8"/>
+          <stop offset="100%" stop-color="#e0d0b8"/>
+        </radialGradient>
+        <radialGradient id="coffeeGrad" cx="40%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#8a5020"/>
+          <stop offset="60%" stop-color="#5a2e10"/>
+          <stop offset="100%" stop-color="#3a1e08"/>
+        </radialGradient>
+      </defs>
+      <rect width="600" height="220" fill="#3a2010"/>
+      <rect width="600" height="220" fill="url(#coffeeBg)"/>
+
+      <!-- Saucer -->
+      <ellipse cx="300" cy="188" rx="120" ry="18" fill="url(#cupGrad)" opacity="0.9"/>
+      <ellipse cx="300" cy="184" rx="110" ry="14" fill="#ede0c8" opacity="0.7"/>
+
+      <!-- Cup body -->
+      <path d="M220 120 Q218 180 300 185 Q382 180 380 120 Q360 108 300 106 Q240 108 220 120Z"
+            fill="url(#cupGrad)" opacity="0.95"/>
+      <!-- Cup inner shadow -->
+      <path d="M224 122 Q222 178 300 182 Q378 178 376 122 Q356 132 300 134 Q244 132 224 122Z"
+            fill="#ddd0b8" opacity="0.4"/>
+
+      <!-- Coffee surface -->
+      <ellipse cx="300" cy="118" rx="75" ry="16" fill="url(#coffeeGrad)"/>
+      <!-- Latte art - leaf/rosette -->
+      <g opacity="0.85">
+        <!-- Central stem -->
+        <path d="M300 130 Q300 122 300 108" fill="none" stroke="#c8a060" stroke-width="1.5"/>
+        <!-- Leaf shapes -->
+        <path d="M300 128 Q290 124 284 116 Q292 118 300 122Z" fill="#d4b070" opacity="0.8"/>
+        <path d="M300 128 Q310 124 316 116 Q308 118 300 122Z" fill="#d4b070" opacity="0.8"/>
+        <path d="M300 124 Q288 120 282 112 Q292 114 300 118Z" fill="#c8a860" opacity="0.65"/>
+        <path d="M300 124 Q312 120 318 112 Q308 114 300 118Z" fill="#c8a860" opacity="0.65"/>
+        <path d="M300 120 Q290 116 285 108 Q293 110 300 114Z" fill="#bca050" opacity="0.5"/>
+        <path d="M300 120 Q310 116 315 108 Q307 110 300 114Z" fill="#bca050" opacity="0.5"/>
+        <!-- Heart at top -->
+        <path d="M296 110 Q296 106 300 108 Q304 106 304 110 Q304 113 300 116 Q296 113 296 110Z"
+              fill="#e0b860" opacity="0.75"/>
+      </g>
+      <!-- Cup rim highlight -->
+      <ellipse cx="300" cy="118" rx="75" ry="16" fill="none" stroke="#f0e8d0" stroke-width="1" opacity="0.5"/>
+
+      <!-- Handle -->
+      <path d="M378 130 Q410 130 410 150 Q410 170 378 170"
+            fill="none" stroke="url(#cupGrad)" stroke-width="14" stroke-linecap="round"/>
+      <path d="M378 130 Q405 130 405 150 Q405 170 378 170"
+            fill="none" stroke="#ddd0b8" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+
+      <!-- Steam wisps -->
+      <g fill="none" stroke="#e0d0b0" stroke-width="1.2" stroke-linecap="round" opacity="0.4">
+        <path d="M275 98 Q272 88 276 80 Q280 72 277 64"/>
+        <path d="M300 95 Q297 85 301 77 Q305 69 302 61"/>
+        <path d="M325 98 Q322 88 326 80 Q330 72 327 64"/>
+      </g>
+
+      <!-- Ambient warmth -->
+      <radialGradient id="warmCenter" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#f0c060" stop-opacity="0.15"/>
+        <stop offset="100%" stop-color="#f0c060" stop-opacity="0"/>
+      </radialGradient>
+      <rect width="600" height="220" fill="url(#warmCenter)"/>
+    </svg>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="name">Aurum</div>
+    <div class="sub">Café &amp; Bistro</div>
+  </div>
+  <div class="footer-col">
+    <h5>Open Daily</h5>
+    <p>8:00 AM – 11:00 PM</p>
+  </div>
+  <div class="footer-col">
+    <h5>Location</h5>
+    <p>23, Greenways Road,<br/>Bengaluru, India</p>
+  </div>
+  <div class="footer-col">
+    <h5>Follow Us</h5>
+    <div class="footer-social">
+      <a href="#" title="Instagram">ig</a>
+      <a href="#" title="Facebook">f</a>
+      <a href="#" title="Twitter">𝕏</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

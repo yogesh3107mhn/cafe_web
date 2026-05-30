@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Aurum Cafe & Bistro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --green:#2C4A3E;
+  --green-dk:#1E342A;
+  --cream:#F5EFE4;
+  --cream-lt:#FBF7F0;
+  --warm:#E8DDD0;
+  --terra:#C17A56;
+  --terra-lt:#D4956E;
+  --brown:#6B4226;
+  --text:#2C1F14;
+  --text-md:#5A4535;
+  --text-lt:#8C7B6E;
+  --fh:'Cormorant Garamond',Georgia,serif;
+  --fb:'Jost',sans-serif;
+}
+html{font-size:16px;scroll-behavior:smooth;}
+body{font-family:var(--fb);background:var(--cream-lt);color:var(--text);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;font-family:var(--fb);border:none;background:none;}
+
+/* ── NAV ── */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;height:68px;
+  background:var(--green);
+  position:sticky;top:0;z-index:100;
+}
+.nav-logo{
+  display:flex;flex-direction:column;line-height:1.1;
+}
+.nav-logo-main{
+  font-family:var(--fh);font-size:1.2rem;font-weight:600;
+  color:#fff;letter-spacing:.08em;
+}
+.nav-logo-sub{
+  font-size:.58rem;font-weight:400;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(255,255,255,.5);
+}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+.nav-links a{
+  font-size:.72rem;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(255,255,255,.75);
+  transition:color .25s;position:relative;
+}
+.nav-links a:hover{color:#fff;}
+.nav-links a.active{color:#fff;}
+.nav-links a.active::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;
+  height:1px;background:var(--terra-lt);
+}
+.nav-reserve{
+  font-size:.68rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--green-dk);
+  background:var(--terra);padding:10px 22px;
+  border-radius:2px;transition:background .25s,transform .2s;
+}
+.nav-reserve:hover{background:var(--terra-lt);transform:translateY(-1px);}
+
+/* ── HERO ── */
+.hero{
+  position:relative;height:520px;overflow:hidden;
+  background:var(--green-dk);
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1600&q=85');
+  background-size:cover;background-position:center 40%;
+  filter:brightness(.52) saturate(.8);
+  animation:heroZoom 16s ease-in-out infinite alternate;
+}
+@keyframes heroZoom{
+  from{transform:scale(1.04);}
+  to{transform:scale(1);}
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(28,40,30,.78) 0%,rgba(28,40,30,.35) 60%,transparent 100%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  height:100%;display:flex;flex-direction:column;
+  justify-content:center;padding:0 5rem;
+  max-width:680px;
+}
+.hero-h1{
+  font-family:var(--fh);
+  font-size:clamp(2.6rem,5.5vw,4.4rem);
+  font-weight:400;line-height:1.1;
+  color:#fff;margin-bottom:.9rem;
+  opacity:0;transform:translateY(24px);
+  animation:fadeUp .9s .2s ease forwards;
+}
+.hero-sub{
+  font-size:.92rem;font-weight:300;line-height:1.75;
+  color:rgba(255,255,255,.65);margin-bottom:2.2rem;
+  max-width:360px;
+  opacity:0;
+  animation:fadeUp .9s .45s ease forwards;
+}
+.hero-btns{
+  display:flex;gap:1rem;
+  opacity:0;
+  animation:fadeUp .8s .65s ease forwards;
+}
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0);}
+}
+.btn-solid{
+  font-size:.7rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--green-dk);
+  background:var(--terra);padding:13px 28px;border-radius:2px;
+  transition:background .25s,transform .2s,box-shadow .2s;
+}
+.btn-solid:hover{background:var(--terra-lt);transform:translateY(-2px);box-shadow:0 8px 24px rgba(193,122,86,.32);}
+.btn-outline-hero{
+  font-size:.7rem;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:#fff;
+  background:transparent;padding:13px 28px;border-radius:2px;
+  border:1px solid rgba(255,255,255,.4);
+  transition:border-color .25s,background .25s,transform .2s;
+}
+.btn-outline-hero:hover{border-color:#fff;background:rgba(255,255,255,.08);transform:translateY(-2px);}
+
+/* hero dots */
+.hero-dots{
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+  z-index:2;display:flex;gap:7px;
+}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);}
+.hero-dot.active{background:var(--terra);}
+
+/* ── HIGHLIGHTS BAND ── */
+.highlights{
+  background:var(--cream-lt);
+  padding:64px 3rem;text-align:center;
+  border-bottom:1px solid rgba(107,66,38,.08);
+}
+.highlights-eyebrow{
+  font-size:.62rem;font-weight:600;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--terra);
+  margin-bottom:1.1rem;
+}
+.highlights-title{
+  font-family:var(--fh);font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:400;color:var(--text);margin-bottom:.7rem;
+}
+.highlights-sub{
+  font-size:.88rem;font-weight:300;line-height:1.8;
+  color:var(--text-lt);max-width:420px;margin:0 auto 3rem;
+}
+.highlights-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2rem;max-width:880px;margin:0 auto;
+}
+.hl-item{display:flex;flex-direction:column;align-items:center;gap:.8rem;}
+.hl-icon{
+  width:52px;height:52px;border-radius:50%;
+  background:rgba(193,122,86,.1);
+  display:flex;align-items:center;justify-content:center;
+}
+.hl-icon svg{width:24px;height:24px;stroke:var(--terra);stroke-width:1.5;fill:none;}
+.hl-name{
+  font-size:.82rem;font-weight:600;letter-spacing:.06em;
+  color:var(--text);
+}
+.hl-desc{
+  font-size:.75rem;font-weight:300;line-height:1.65;
+  color:var(--text-lt);text-align:center;max-width:160px;
+}
+
+/* ── CHEF PICKS ── */
+.chef-picks{
+  background:var(--cream-lt);
+  padding:72px 3rem;
+}
+.chef-picks-hd{
+  text-align:center;margin-bottom:3rem;
+}
+.chef-picks-eyebrow{
+  font-size:.62rem;font-weight:600;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--terra);margin-bottom:.8rem;
+}
+.chef-picks-title{
+  font-family:var(--fh);font-size:clamp(1.8rem,3.2vw,2.6rem);
+  font-weight:400;color:var(--text);
+}
+.dishes-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1.4rem;max-width:1100px;margin:0 auto 2.8rem;
+}
+.dish-card{
+  background:#fff;border-radius:4px;overflow:hidden;
+  box-shadow:0 2px 16px rgba(44,31,20,.07);
+  transition:transform .3s,box-shadow .3s;
+}
+.dish-card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(44,31,20,.13);}
+.dish-img-wrap{height:180px;overflow:hidden;position:relative;}
+.dish-img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s ease;
+  filter:saturate(.9) brightness(.92);
+}
+.dish-card:hover .dish-img{transform:scale(1.06);}
+.dish-info{padding:1rem 1.1rem 1.2rem;}
+.dish-name{
+  font-family:var(--fh);font-size:1.05rem;font-weight:500;
+  color:var(--text);margin-bottom:.35rem;line-height:1.25;
+}
+.dish-short{font-size:.75rem;font-weight:300;color:var(--text-lt);line-height:1.6;margin-bottom:.7rem;}
+.dish-price{
+  font-family:var(--fh);font-size:1rem;font-style:italic;
+  color:var(--terra);font-weight:400;
+}
+.chef-cta{display:flex;justify-content:center;}
+.btn-ghost-dk{
+  font-size:.7rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--green);
+  border:1.5px solid var(--green);padding:12px 36px;border-radius:2px;
+  transition:background .25s,color .25s,transform .2s;
+}
+.btn-ghost-dk:hover{background:var(--green);color:#fff;transform:translateY(-2px);}
+
+/* ── ATMOSPHERE ── */
+.atmosphere{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:480px;
+}
+.atm-visual{position:relative;overflow:hidden;}
+.atm-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;filter:saturate(.8) brightness(.72);
+  transition:transform .9s ease;
+}
+.atmosphere:hover .atm-img{transform:scale(1.04);}
+.atm-content{
+  background:var(--green);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(3rem,6vw,5.5rem) clamp(2rem,5vw,4.5rem);
+}
+.atm-eyebrow{
+  font-size:.6rem;font-weight:600;letter-spacing:.32em;
+  text-transform:uppercase;color:rgba(255,255,255,.45);
+  margin-bottom:1.4rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.atm-eyebrow::before{
+  content:'';width:28px;height:1px;
+  background:rgba(255,255,255,.3);
+}
+.atm-title{
+  font-family:var(--fh);font-size:clamp(2rem,3.8vw,3.4rem);
+  font-weight:400;line-height:1.1;color:#fff;
+  margin-bottom:1.4rem;
+}
+.atm-title em{font-style:italic;color:rgba(255,255,255,.7);}
+.atm-body{
+  font-size:.88rem;font-weight:300;line-height:1.95;
+  color:rgba(255,255,255,.52);margin-bottom:2.5rem;
+  max-width:380px;
+}
+.btn-terra{
+  font-size:.68rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--green-dk);
+  background:var(--terra);padding:13px 30px;
+  border-radius:2px;align-self:flex-start;
+  transition:background .25s,transform .2s,box-shadow .2s;
+}
+.btn-terra:hover{background:var(--terra-lt);transform:translateY(-2px);box-shadow:0 8px 20px rgba(193,122,86,.3);}
+
+/* ── TESTIMONIALS ── */
+.testimonials{
+  background:var(--cream-lt);
+  padding:80px 3rem;text-align:center;
+}
+.testi-eyebrow{
+  font-size:.6rem;font-weight:600;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--terra);margin-bottom:.8rem;
+}
+.testi-title{
+  font-family:var(--fh);font-size:clamp(1.8rem,3vw,2.6rem);
+  font-weight:400;color:var(--text);margin-bottom:3rem;
+}
+.testi-slider{
+  max-width:680px;margin:0 auto;position:relative;
+}
+.testi-card{
+  background:#fff;border-radius:6px;
+  padding:2.8rem 3rem;
+  box-shadow:0 2px 20px rgba(44,31,20,.06);
+  border:1px solid rgba(107,66,38,.07);
+}
+.testi-quote-icon{
+  font-family:var(--fh);font-size:4rem;line-height:.5;
+  color:var(--terra);opacity:.3;margin-bottom:1rem;
+}
+.testi-text{
+  font-family:var(--fh);font-size:1.1rem;font-style:italic;
+  font-weight:300;line-height:1.8;
+  color:var(--text-md);margin-bottom:1.8rem;
+}
+.testi-author{
+  display:flex;align-items:center;justify-content:center;gap:.9rem;
+}
+.testi-av{
+  width:38px;height:38px;border-radius:50%;overflow:hidden;flex-shrink:0;
+}
+.testi-av img{width:100%;height:100%;object-fit:cover;filter:saturate(.7);}
+.testi-name{
+  font-size:.82rem;font-weight:600;color:var(--text);
+  text-align:left;
+}
+.testi-loc{font-size:.7rem;font-weight:300;color:var(--text-lt);}
+.testi-arrows{
+  display:flex;justify-content:center;gap:1rem;margin-top:2rem;
+}
+.testi-arr{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(107,66,38,.2);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-lt);transition:all .25s;
+  font-size:.9rem;
+}
+.testi-arr:hover{background:var(--terra);border-color:var(--terra);color:#fff;}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--green-dk);
+  padding:36px 3rem;
+}
+.foot-inner{
+  display:flex;align-items:flex-start;
+  justify-content:space-between;
+  gap:2rem;flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:0;
+  max-width:1300px;margin:0 auto;
+}
+.foot-brand{display:flex;flex-direction:column;gap:.3rem;}
+.foot-logo-main{
+  font-family:var(--fh);font-size:1.1rem;font-weight:600;
+  color:#fff;letter-spacing:.08em;
+}
+.foot-logo-sub{
+  font-size:.58rem;font-weight:400;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(255,255,255,.4);
+}
+.foot-col{display:flex;flex-direction:column;gap:.3rem;}
+.foot-col-title{
+  font-size:.6rem;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--terra-lt);
+  margin-bottom:.5rem;
+}
+.foot-col p,.foot-col a{
+  font-size:.78rem;font-weight:300;color:rgba(255,255,255,.5);
+  line-height:1.75;transition:color .2s;
+}
+.foot-col a:hover{color:#fff;}
+.foot-social{display:flex;gap:1.2rem;margin-top:.4rem;}
+.foot-social a{
+  font-size:.65rem;font-weight:500;letter-spacing:.15em;
+  text-transform:uppercase;color:rgba(255,255,255,.35);
+  transition:color .2s;
+}
+.foot-social a:hover{color:var(--terra-lt);}
+.foot-copy{
+  font-size:.65rem;font-weight:300;letter-spacing:.1em;
+  color:rgba(255,255,255,.25);
+}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease;}
+.rv.in{opacity:1;transform:translateY(0);}
+.rv.d1{transition-delay:.1s;}
+.rv.d2{transition-delay:.2s;}
+.rv.d3{transition-delay:.3s;}
+.rv.d4{transition-delay:.4s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .highlights-grid{grid-template-columns:repeat(2,1fr);}
+  .dishes-row{grid-template-columns:repeat(2,1fr);}
+  .atmosphere{grid-template-columns:1fr;}
+  .atm-visual{min-height:320px;}
+}
+@media(max-width:768px){
+  nav{padding:0 1.5rem;}
+  .nav-links{display:none;}
+  .hero-content{padding:0 2rem;}
+  .highlights,.chef-picks,.testimonials{padding:56px 1.5rem;}
+  .atmosphere>.atm-content{padding:3rem 2rem;}
+  footer{padding:2.5rem 1.5rem;}
+  .foot-inner{flex-direction:column;gap:2rem;}
+}
+@media(max-width:480px){
+  .dishes-row{grid-template-columns:1fr;}
+  .highlights-grid{grid-template-columns:1fr 1fr;}
+  .hero-btns{flex-direction:column;gap:.75rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-main">AURUM</span>
+    <span class="nav-logo-sub">Café &amp; Bistro</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="reservations.html">Reservations</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="reservations.html" class="nav-reserve">Reserve a Table</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-h1">Where Taste<br>Meets Elegance</h1>
+    <p class="hero-sub">A refined café experience crafted with passion, served with warmth.</p>
+    <div class="hero-btns">
+      <a href="reservations.html" class="btn-solid">Reserve a Table</a>
+      <a href="menu.html" class="btn-outline-hero">Explore Menu</a>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <div class="hero-dot active"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+  </div>
+</section>
+
+<!-- ══ SIGNATURE HIGHLIGHTS ══ -->
+<section class="highlights">
+  <div class="highlights-eyebrow rv">Signature Highlights</div>
+  <h2 class="highlights-title rv d1">Culinary Moments<br>Curated for You</h2>
+  <p class="highlights-sub rv d2">Indulge in our handpicked selections, crafted with the finest ingredients.</p>
+  <div class="highlights-grid">
+    <div class="hl-item rv d1">
+      <div class="hl-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      </div>
+      <div class="hl-name">Artisan Coffee</div>
+      <div class="hl-desc">Expertly brewed for the perfect sip.</div>
+    </div>
+    <div class="hl-item rv d2">
+      <div class="hl-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div class="hl-name">Seasonal Menu</div>
+      <div class="hl-desc">Fresh ingredients, thoughtfully prepared.</div>
+    </div>
+    <div class="hl-item rv d3">
+      <div class="hl-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="hl-name">Warm Ambience</div>
+      <div class="hl-desc">A cosy space for beautiful moments.</div>
+    </div>
+    <div class="hl-item rv d4">
+      <div class="hl-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div class="hl-name">Memorable Service</div>
+      <div class="hl-desc">Hospitality that feels like home.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CHEF'S PICKS ══ -->
+<section class="chef-picks">
+  <div class="chef-picks-hd">
+    <div class="chef-picks-eyebrow rv">Chef's Picks</div>
+    <h2 class="chef-picks-title rv d1">Our Most Loved Creations</h2>
+  </div>
+  <div class="dishes-row">
+    <div class="dish-card rv d1">
+      <div class="dish-img-wrap">
+        <img class="dish-img"
+          src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=600&q=80"
+          alt="Truffle Mushroom Ravioli"
+          loading="lazy"/>
+      </div>
+      <div class="dish-info">
+        <div class="dish-name">Truffle Mushroom Ravioli</div>
+        <div class="dish-short">Expertly brewed for the perfect sip</div>
+        <div class="dish-price">₹945</div>
+      </div>
+    </div>
+    <div class="dish-card rv d2">
+      <div class="dish-img-wrap">
+        <img class="dish-img"
+          src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80"
+          alt="Avocado & Burrata Toast"
+          loading="lazy"/>
+      </div>
+      <div class="dish-info">
+        <div class="dish-name">Avocado &amp; Burrata Toast</div>
+        <div class="dish-short">Fresh ingredients, thoughtfully made</div>
+        <div class="dish-price">₹695</div>
+      </div>
+    </div>
+    <div class="dish-card rv d3">
+      <div class="dish-img-wrap">
+        <img class="dish-img"
+          src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80"
+          alt="Hazelnut Praline Latte"
+          loading="lazy"/>
+      </div>
+      <div class="dish-info">
+        <div class="dish-name">Hazelnut Praline Latte</div>
+        <div class="dish-short">A cosy sip for beautiful moments</div>
+        <div class="dish-price">₹325</div>
+      </div>
+    </div>
+    <div class="dish-card rv d4">
+      <div class="dish-img-wrap">
+        <img class="dish-img"
+          src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600&q=80"
+          alt="Chocolate Fondant Delight"
+          loading="lazy"/>
+      </div>
+      <div class="dish-info">
+        <div class="dish-name">Chocolate Fondant Delight</div>
+        <div class="dish-short">Hospitality that feels like home</div>
+        <div class="dish-price">₹425</div>
+      </div>
+    </div>
+  </div>
+  <div class="chef-cta rv">
+    <a href="menu.html" class="btn-ghost-dk">View Full Menu</a>
+  </div>
+</section>
+
+<!-- ══ ATMOSPHERE ══ -->
+<section class="atmosphere">
+  <div class="atm-visual">
+    <img class="atm-img"
+      src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000&q=80"
+      alt="Aurum interior atmosphere"
+      loading="lazy"/>
+  </div>
+  <div class="atm-content">
+    <div class="atm-eyebrow rv">A Space That Feels</div>
+    <h2 class="atm-title rv d1">Like a Warm Hug</h2>
+    <p class="atm-body rv d2">Every corner of Aurum is designed to make you slow down, relax and stay a little longer.</p>
+    <a href="#" class="btn-terra rv d3">Discover Our Story</a>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testimonials">
+  <div class="testi-eyebrow rv">Kind Words</div>
+  <h2 class="testi-title rv d1">From Our Guests</h2>
+  <div class="testi-slider rv d2">
+    <div class="testi-card">
+      <div class="testi-quote-icon">"</div>
+      <p class="testi-text">"The ambience, the food, the coffee — everything is simply exceptional. My favorite place in town!"</p>
+      <div class="testi-author">
+        <div class="testi-av">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=70" alt="Ananya Mehta"/>
+        </div>
+        <div>
+          <div class="testi-name">Ananya Mehta</div>
+          <div class="testi-loc">Regular Guest</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-arrows">
+      <button class="testi-arr" aria-label="Previous">&#8592;</button>
+      <button class="testi-arr" aria-label="Next">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <span class="foot-logo-main">AURUM</span>
+      <span class="foot-logo-sub">Café &amp; Bistro</span>
+      <div class="foot-social" style="margin-top:.8rem;">
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">Pinterest</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <div class="foot-col-title">Open Daily</div>
+      <p>8:00 AM – 11:00 PM</p>
+    </div>
+    <div class="foot-col">
+      <div class="foot-col-title">Location</div>
+      <p>23, Greenway Road,<br>Bengaluru, IN</p>
+    </div>
+    <div class="foot-col">
+      <div class="foot-col-title">Follow Us</div>
+      <a href="#">@aurum.cafe</a>
+      <a href="#">+91 98765 43210</a>
+    </div>
+    <div style="width:100%;border-top:1px solid rgba(255,255,255,.06);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+      <span class="foot-copy">© 2025 Aurum Café &amp; Bistro. All rights reserved.</span>
+      <span class="foot-copy">Privacy Policy · Terms of Use</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+/* Testimonial slider */
+const slides = [
+  { text: '"The ambience, the food, the coffee — everything is simply exceptional. My favorite place in town!"', name: 'Ananya Mehta', loc: 'Regular Guest', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=70' },
+  { text: '"Every visit feels like a warm embrace. The truffle ravioli alone is worth the journey."', name: 'Rohan Sharma', loc: 'Food Enthusiast', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=70' },
+  { text: '"Aurum is not just a café — it is an experience. The hazelnut latte has ruined all other coffee for me."', name: 'Priya Nair', loc: 'Lifestyle Blogger', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=70' },
+];
+let cur = 0;
+const txt  = document.querySelector('.testi-text');
+const nm   = document.querySelector('.testi-name');
+const loc  = document.querySelector('.testi-loc');
+const avImg= document.querySelector('.testi-av img');
+const card = document.querySelector('.testi-card');
+
+function goTo(idx) {
+  cur = (idx + slides.length) % slides.length;
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(8px)';
+  setTimeout(() => {
+    const s = slides[cur];
+    txt.textContent = s.text;
+    nm.textContent = s.name;
+    loc.textContent = s.loc;
+    avImg.src = s.img;
+    avImg.alt = s.name;
+    card.style.transition = 'opacity .45s ease, transform .45s ease';
+    card.style.opacity = '1';
+    card.style.transform = 'translateY(0)';
+  }, 240);
+}
+document.querySelector('.testi-arr[aria-label="Previous"]').addEventListener('click', () => goTo(cur - 1));
+document.querySelector('.testi-arr[aria-label="Next"]').addEventListener('click', () => goTo(cur + 1));
+setInterval(() => goTo(cur + 1), 5500);
+</script>
+</body>
+</html>

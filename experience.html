@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aurum Café & Bistro — Our Story</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --warm-white: #faf8f3;
+      --terracotta: #c1674a;
+      --terracotta-dark: #a85538;
+      --forest: #2e3d2f;
+      --forest-light: #3a4e3b;
+      --text-dark: #2a2118;
+      --text-mid: #5a4e42;
+      --text-light: #9a8e82;
+      --border: #ddd5c5;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--warm-white);
+      color: var(--text-dark);
+      font-weight: 300;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: var(--warm-white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-dark);
+    }
+    .nav-logo .sub {
+      font-size: 9px; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--text-light); margin-top: 2px;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 12px; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--text-mid); transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-dark); }
+    .btn-nav {
+      background: var(--terracotta); color: #fff; border: none;
+      padding: 10px 22px; font-family: 'Jost', sans-serif;
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      cursor: pointer; border-radius: 2px; transition: background 0.2s;
+    }
+    .btn-nav:hover { background: var(--terracotta-dark); }
+
+    /* ── HERO: OUR STORY ── */
+    .hero {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(140deg, #2e3d2f 0%, #3a5030 40%, #c8a870 100%);
+    }
+    /* Arch shapes */
+    .hero-arch {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 55%;
+      overflow: hidden;
+    }
+    .hero-arch::before {
+      content: '';
+      position: absolute;
+      right: 60px; top: 20px;
+      width: 220px; height: 340px;
+      border-radius: 110px 110px 0 0;
+      background: linear-gradient(160deg, #4a6040 0%, #2e3d2f 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-arch::after {
+      content: '';
+      position: absolute;
+      right: 200px; top: 40px;
+      width: 160px; height: 280px;
+      border-radius: 80px 80px 0 0;
+      background: linear-gradient(160deg, #5a7050 0%, #3a5030 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    /* Table scene in hero */
+    .hero-table-scene {
+      position: absolute;
+      right: 0; bottom: 0;
+      width: 55%; height: 100%;
+      opacity: 0.5;
+    }
+    /* Warm overlay */
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(20,28,20,0.75) 40%, rgba(20,28,20,0.1) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 60px;
+      max-width: 520px;
+    }
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 56px; font-weight: 400;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero-content p {
+      font-size: 13px; line-height: 1.8;
+      color: rgba(245,240,232,0.75);
+      margin-bottom: 32px;
+      max-width: 340px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--terracotta); color: #fff;
+      border: none; padding: 13px 28px;
+      font-family: 'Jost', sans-serif;
+      font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; cursor: pointer;
+      border-radius: 2px; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--terracotta-dark); }
+
+    /* ── OUR PHILOSOPHY ── */
+    .philosophy {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: var(--warm-white);
+      padding: 72px 60px;
+      align-items: center;
+    }
+    .philosophy-text { padding-right: 60px; }
+    .philosophy-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px; font-weight: 400;
+      color: var(--text-dark); margin-bottom: 20px;
+    }
+    .philosophy-text p {
+      font-size: 13px; line-height: 1.85;
+      color: var(--text-mid); max-width: 380px;
+    }
+    .philosophy-image {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 320px;
+    }
+    /* Plated dish scene */
+    .dish-scene {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #2a1e14 0%, #3e2c1c 40%, #c8a060 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .dish-scene::before {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #f0e8d0 0%, #e0c898 30%, #c09060 60%, transparent 80%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .dish-scene-svg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+    }
+
+    /* ── CRAFTED WITH CARE ── */
+    .crafted {
+      background: var(--forest);
+      padding: 72px 60px;
+      text-align: center;
+    }
+    .crafted h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px; font-weight: 400;
+      color: var(--cream); margin-bottom: 48px;
+    }
+    .crafted-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .crafted-item { display: flex; flex-direction: column; align-items: center; }
+    .crafted-icon {
+      width: 52px; height: 52px;
+      border: 1px solid rgba(200,190,170,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+      color: #c8a870;
+    }
+    .crafted-item h4 {
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--cream); margin-bottom: 8px;
+    }
+    .crafted-item p {
+      font-size: 11px; line-height: 1.7;
+      color: rgba(200,190,170,0.65);
+    }
+
+    /* ── MEET OUR CHEF ── */
+    .chef {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--warm-white);
+      padding: 72px 60px;
+      align-items: center;
+      gap: 60px;
+    }
+    .chef-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px; font-weight: 400;
+      color: var(--text-dark); margin-bottom: 6px;
+    }
+    .chef-name {
+      font-size: 13px; font-weight: 500;
+      color: var(--terracotta);
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+    .chef-title {
+      font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-light);
+      margin-bottom: 24px;
+    }
+    .chef-text p {
+      font-size: 13px; line-height: 1.85;
+      color: var(--text-mid); max-width: 380px;
+    }
+    .chef-image {
+      position: relative;
+      border-radius: 200px 200px 4px 4px;
+      overflow: hidden;
+      height: 360px;
+      background: linear-gradient(160deg, #2a2018 0%, #3a2e22 50%, #4a3c2c 100%);
+    }
+    .chef-image-inner {
+      width: 100%; height: 100%;
+      background: linear-gradient(170deg, #1e1810 0%, #3a2c1e 60%, #c09060 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .chef-image-inner::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 70%;
+      background: radial-gradient(ellipse at 50% 100%, rgba(180,130,80,0.3) 0%, transparent 70%);
+    }
+
+    /* ── PRIVATE DINING ── */
+    .private-dining {
+      position: relative;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .private-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(140deg, #1e1810 0%, #3a2c1e 50%, #c0a060 100%);
+    }
+    .private-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(15,12,8,0.85) 45%, rgba(15,12,8,0.2) 100%);
+    }
+    /* Table scene in background */
+    .private-scene {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 60%;
+      background: linear-gradient(135deg, #3a2c1e 0%, #c09858 50%, #e8c880 100%);
+      opacity: 0.35;
+    }
+    .private-content {
+      position: relative; z-index: 2;
+      padding: 80px 60px;
+      max-width: 500px;
+    }
+    .private-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px; font-weight: 400;
+      color: var(--cream); margin-bottom: 16px; line-height: 1.2;
+    }
+    .private-content p {
+      font-size: 13px; line-height: 1.8;
+      color: rgba(245,240,232,0.7);
+      margin-bottom: 32px; max-width: 360px;
+    }
+
+    /* Decorative dining table SVG */
+    .private-table-svg {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 60%; height: 100%;
+      opacity: 0.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--forest-light);
+      padding: 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--cream);
+    }
+    .footer-logo .sub {
+      font-size: 8px; letter-spacing: 0.28em;
+      text-transform: uppercase; color: #7a9a7b; margin-top: 2px;
+    }
+    .footer-col h5 {
+      font-size: 9px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: #7a9a7b; margin-bottom: 6px;
+    }
+    .footer-col p { font-size: 11px; color: #a0988e; line-height: 1.7; }
+    .social-links { display: flex; gap: 12px; margin-top: 8px; }
+    .social-links a {
+      width: 28px; height: 28px;
+      border: 1px solid #4a6a4b; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #8aaa8b; text-decoration: none; font-size: 11px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-links a:hover { border-color: #8aaa8b; color: var(--cream); }
+
+    @media (max-width: 720px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .philosophy, .chef { grid-template-columns: 1fr; padding: 48px 24px; }
+      .philosophy-text { padding-right: 0; margin-bottom: 32px; }
+      .crafted { padding: 48px 24px; }
+      .crafted-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero-content { padding: 60px 28px; }
+      .private-content { padding: 60px 28px; }
+      footer { flex-direction: column; gap: 24px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="name">Aurum</span>
+    <span class="sub">Café &amp; Bistro</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html" class="active">Menu</a></li>
+    <li><a href="reservations.html">Reservations</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="reservations.html" class="nav-reserve">Reserve a Table</a>
+</nav>
+
+<!-- HERO: OUR STORY -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-arch"></div>
+  <div class="hero-overlay"></div>
+
+  <!-- Decorative dining scene SVG -->
+  <svg class="hero-table-scene" viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background warm glow -->
+    <radialGradient id="heroGlow" cx="60%" cy="70%" r="60%">
+      <stop offset="0%" stop-color="#d4a060" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#d4a060" stop-opacity="0"/>
+    </radialGradient>
+    <rect width="700" height="420" fill="url(#heroGlow)"/>
+    <!-- Table -->
+    <ellipse cx="420" cy="330" rx="200" ry="30" fill="#2a1e12" opacity="0.8"/>
+    <rect x="270" y="240" width="300" height="90" rx="4" fill="#3a2818" opacity="0.6"/>
+    <!-- Tablecloth edge -->
+    <rect x="265" y="240" width="310" height="6" rx="3" fill="#e8d8b8" opacity="0.3"/>
+    <!-- Wine glasses -->
+    <g fill="none" stroke="#d4c8a8" stroke-width="1.2" opacity="0.8">
+      <path d="M350 240 Q350 270 334 280 L366 280 Q350 270 350 240Z"/>
+      <rect x="347" y="280" width="6" height="22" rx="1"/>
+      <rect x="337" y="302" width="26" height="3" rx="1.5"/>
+      <path d="M390 235 Q390 268 373 280 L407 280 Q390 268 390 235Z"/>
+      <rect x="387" y="280" width="6" height="22" rx="1"/>
+      <rect x="377" y="302" width="26" height="3" rx="1.5"/>
+      <path d="M440 238 Q440 268 424 278 L456 278 Q440 268 440 238Z"/>
+      <rect x="437" y="278" width="6" height="22" rx="1"/>
+      <rect x="427" y="300" width="26" height="3" rx="1.5"/>
+    </g>
+    <!-- Candle -->
+    <rect x="478" y="228" width="10" height="48" rx="2" fill="#f0e0b8" opacity="0.6"/>
+    <ellipse cx="483" cy="224" rx="7" ry="4" fill="#f0e0b8" opacity="0.6"/>
+    <radialGradient id="candleFlame" cx="50%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="#ffcc40" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ff8820" stop-opacity="0"/>
+    </radialGradient>
+    <ellipse cx="483" cy="218" rx="8" ry="14" fill="url(#candleFlame)"/>
+    <!-- Plate -->
+    <ellipse cx="370" cy="308" rx="42" ry="10" fill="#e8e0d0" opacity="0.25"/>
+    <ellipse cx="440" cy="308" rx="42" ry="10" fill="#e8e0d0" opacity="0.25"/>
+    <!-- Floral centerpiece -->
+    <g opacity="0.7">
+      <rect x="414" y="230" width="14" height="50" rx="3" fill="#c8a060" opacity="0.5"/>
+      <line x1="421" y1="228" x2="408" y2="178" stroke="#5a7a4a" stroke-width="1.5"/>
+      <line x1="421" y1="228" x2="424" y2="168" stroke="#5a7a4a" stroke-width="1.5"/>
+      <line x1="421" y1="228" x2="436" y2="182" stroke="#5a7a4a" stroke-width="1.5"/>
+      <circle cx="408" cy="174" r="13" fill="#c87060" opacity="0.75"/>
+      <circle cx="424" cy="163" r="15" fill="#d08070" opacity="0.7"/>
+      <circle cx="436" cy="178" r="11" fill="#b86050" opacity="0.65"/>
+    </g>
+    <!-- Chairs (silhouette) -->
+    <g fill="#1a1208" opacity="0.85">
+      <rect x="210" y="260" width="70" height="8" rx="3"/>
+      <rect x="220" y="235" width="50" height="28" rx="4"/>
+      <rect x="218" y="268" width="7" height="28" rx="2"/>
+      <rect x="265" y="268" width="7" height="28" rx="2"/>
+      <rect x="540" y="260" width="70" height="8" rx="3"/>
+      <rect x="550" y="235" width="50" height="28" rx="4"/>
+      <rect x="548" y="268" width="7" height="28" rx="2"/>
+      <rect x="595" y="268" width="7" height="28" rx="2"/>
+    </g>
+  </svg>
+
+  <div class="hero-content">
+    <h1>Our Story</h1>
+    <p>Aurum was born out of a love for exceptional food, warm hospitality, and beautiful moments.</p>
+    <a href="#" class="btn-primary">Discover More</a>
+  </div>
+</section>
+
+<!-- OUR PHILOSOPHY -->
+<section class="philosophy">
+  <div class="philosophy-text">
+    <h2>Our Philosophy</h2>
+    <p>We believe in slow dining, honest ingredients, and creating memories around the table. Every dish is a celebration of flavor, craft, and care.</p>
+  </div>
+  <div class="philosophy-image">
+    <div class="dish-scene">
+      <svg class="dish-scene-svg" viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="tableGrad" cx="50%" cy="70%" r="60%">
+            <stop offset="0%" stop-color="#c8a060" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#c8a060" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="plateGrad" cx="50%" cy="40%" r="55%">
+            <stop offset="0%" stop-color="#f8f0e0"/>
+            <stop offset="100%" stop-color="#e0d0b0"/>
+          </radialGradient>
+        </defs>
+        <rect width="480" height="320" fill="#2a1e14"/>
+        <rect width="480" height="320" fill="url(#tableGrad)"/>
+        <!-- Table surface -->
+        <ellipse cx="240" cy="260" rx="280" ry="50" fill="#3a2818" opacity="0.7"/>
+        <!-- Plate -->
+        <ellipse cx="200" cy="210" rx="80" ry="20" fill="#e8e0ce" opacity="0.9"/>
+        <ellipse cx="200" cy="205" rx="70" ry="16" fill="url(#plateGrad)"/>
+        <!-- Food on plate - artistic -->
+        <ellipse cx="200" cy="200" rx="45" ry="12" fill="#8a6030" opacity="0.8"/>
+        <ellipse cx="200" cy="198" rx="30" ry="8" fill="#c09050" opacity="0.9"/>
+        <circle cx="185" cy="194" r="8" fill="#5a7030" opacity="0.8"/>
+        <circle cx="210" cy="193" r="6" fill="#4a6028" opacity="0.7"/>
+        <!-- Sauce drizzle -->
+        <path d="M175 200 Q190 185 205 195 Q215 200 225 192" fill="none" stroke="#d04828" stroke-width="1.5" opacity="0.8"/>
+        <!-- Microgreens -->
+        <g stroke="#6a8838" stroke-width="1" fill="none" opacity="0.9">
+          <line x1="192" y1="194" x2="188" y2="184"/><line x1="196" y1="192" x2="194" y2="181"/>
+          <line x1="200" y1="193" x2="200" y2="182"/><line x1="204" y1="192" x2="206" y2="183"/>
+        </g>
+        <!-- Chef hands hinted -->
+        <path d="M290 140 Q340 160 360 200" fill="none" stroke="#c8a080" stroke-width="8" stroke-linecap="round" opacity="0.4"/>
+        <path d="M310 130 Q350 155 365 195" fill="none" stroke="#c8a080" stroke-width="6" stroke-linecap="round" opacity="0.3"/>
+        <!-- Fork -->
+        <g opacity="0.5" stroke="#c8c0a8" stroke-width="1.2" fill="none">
+          <line x1="120" y1="160" x2="118" y2="240"/>
+          <line x1="115" y1="160" x2="114" y2="178"/><line x1="118" y1="160" x2="117" y2="178"/>
+          <line x1="121" y1="160" x2="120" y2="178"/><line x1="124" y1="160" x2="123" y2="178"/>
+        </g>
+        <!-- Knife -->
+        <g opacity="0.5">
+          <rect x="270" y="162" width="3" height="78" rx="1.5" fill="#c8c0a8"/>
+          <rect x="268" y="162" width="7" height="40" rx="2" fill="#d4cbb0" opacity="0.7"/>
+        </g>
+        <!-- Wine glass -->
+        <g fill="none" stroke="#d4c8a8" stroke-width="1.2" opacity="0.7">
+          <path d="M350 155 Q350 185 336 194 L364 194 Q350 185 350 155Z"/>
+          <rect x="347.5" y="194" width="5" height="18" rx="1"/>
+          <rect x="339" y="212" width="22" height="2.5" rx="1.2"/>
+        </g>
+        <!-- Ambient warm light glow -->
+        <radialGradient id="warmLight" cx="60%" cy="20%" r="50%">
+          <stop offset="0%" stop-color="#f0c060" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#f0c060" stop-opacity="0"/>
+        </radialGradient>
+        <rect width="480" height="320" fill="url(#warmLight)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- CRAFTED WITH CARE -->
+<section class="crafted">
+  <h2>Crafted with Care</h2>
+  <div class="crafted-grid">
+    <div class="crafted-item">
+      <div class="crafted-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M12 2a9 9 0 00-9 9c0 4.97 9 13 9 13s9-8.03 9-13a9 9 0 00-9-9z"/>
+          <circle cx="12" cy="11" r="3"/>
+        </svg>
+      </div>
+      <h4>Finest Ingredients</h4>
+      <p>Sourced responsibly and seasonally.</p>
+    </div>
+    <div class="crafted-item">
+      <div class="crafted-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M12 21.7C7 17 2 13.3 2 9a7 7 0 0114 0c0 4.3-5 8-4 12.7"/>
+          <path d="M12 21.7C17 17 22 13.3 22 9a7 7 0 00-7-7"/>
+          <circle cx="12" cy="9" r="2"/>
+        </svg>
+      </div>
+      <h4>Passion &amp; Craft</h4>
+      <p>Cooked with love, served with pride.</p>
+    </div>
+    <div class="crafted-item">
+      <div class="crafted-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+      </div>
+      <h4>Warm Hospitality</h4>
+      <p>Because you're always our guest.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MEET OUR CHEF -->
+<section class="chef">
+  <div class="chef-text">
+    <h2>Meet Our Chef</h2>
+    <div class="chef-name">Rohan Mehta</div>
+    <div class="chef-title">Founder &amp; Head Chef</div>
+    <p>With over a decade of experience in fine dining, Chef Rohan brings his passion for global flavors and artisanal techniques to Aurum.</p>
+  </div>
+  <div class="chef-image">
+    <div class="chef-image-inner">
+      <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg"
+           style="position:absolute;inset:0;width:100%;height:100%;">
+        <defs>
+          <radialGradient id="chefGlow" cx="50%" cy="30%" r="60%">
+            <stop offset="0%" stop-color="#c09060" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#c09060" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="400" height="360" fill="#1e1810"/>
+        <rect width="400" height="360" fill="url(#chefGlow)"/>
+        <!-- Chef silhouette -->
+        <!-- Head -->
+        <ellipse cx="200" cy="110" rx="52" ry="60" fill="#8a6040" opacity="0.85"/>
+        <!-- Neck -->
+        <rect x="182" y="165" width="36" height="28" rx="4" fill="#7a5030" opacity="0.8"/>
+        <!-- Chef jacket (white) -->
+        <path d="M110 358 L110 220 Q145 195 200 193 Q255 195 290 220 L290 358Z" fill="#e8e0d0" opacity="0.9"/>
+        <!-- Jacket details (double-breasted) -->
+        <rect x="192" y="200" width="16" height="158" rx="1" fill="#d0c8b8" opacity="0.5"/>
+        <circle cx="196" cy="220" r="4" fill="#b0a890" opacity="0.7"/>
+        <circle cx="196" cy="240" r="4" fill="#b0a890" opacity="0.7"/>
+        <circle cx="196" cy="260" r="4" fill="#b0a890" opacity="0.7"/>
+        <circle cx="204" cy="220" r="4" fill="#b0a890" opacity="0.7"/>
+        <circle cx="204" cy="240" r="4" fill="#b0a890" opacity="0.7"/>
+        <circle cx="204" cy="260" r="4" fill="#b0a890" opacity="0.7"/>
+        <!-- Collar -->
+        <path d="M182 193 L175 215 L200 205 L225 215 L218 193" fill="#f0e8d8" opacity="0.8"/>
+        <!-- Arms -->
+        <path d="M110 220 Q80 260 85 320 L120 320 Q115 270 145 235Z" fill="#e8e0d0" opacity="0.85"/>
+        <path d="M290 220 Q320 260 315 320 L280 320 Q285 270 255 235Z" fill="#e8e0d0" opacity="0.85"/>
+        <!-- Hands crossed / holding pan suggestion -->
+        <ellipse cx="200" cy="320" rx="60" ry="15" fill="#8a6040" opacity="0.5"/>
+        <!-- Face details -->
+        <!-- Beard -->
+        <path d="M160 130 Q165 165 200 175 Q235 165 240 130" fill="#4a3020" opacity="0.6"/>
+        <!-- Eyes -->
+        <ellipse cx="183" cy="108" rx="7" ry="5" fill="#2a1810" opacity="0.9"/>
+        <ellipse cx="217" cy="108" rx="7" ry="5" fill="#2a1810" opacity="0.9"/>
+        <!-- Subtle smile -->
+        <path d="M188 130 Q200 138 212 130" fill="none" stroke="#5a3820" stroke-width="2" opacity="0.6"/>
+        <!-- Hair -->
+        <path d="M148 90 Q160 50 200 48 Q240 50 252 90 Q245 65 200 62 Q155 65 148 90Z" fill="#2a1810" opacity="0.85"/>
+        <!-- Floor/bottom light -->
+        <radialGradient id="footLight" cx="50%" cy="100%" r="50%">
+          <stop offset="0%" stop-color="#c09060" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#c09060" stop-opacity="0"/>
+        </radialGradient>
+        <rect width="400" height="360" fill="url(#footLight)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVATE DINING & EVENTS -->
+<section class="private-dining">
+  <div class="private-bg"></div>
+  <div class="private-overlay"></div>
+
+  <!-- Dining table scene -->
+  <svg class="private-table-svg" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="privGlow" cx="40%" cy="60%" r="60%">
+        <stop offset="0%" stop-color="#c8a050" stop-opacity="0.45"/>
+        <stop offset="100%" stop-color="#c8a050" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="700" height="380" fill="#2a1c10"/>
+    <rect width="700" height="380" fill="url(#privGlow)"/>
+    <!-- Long dining table -->
+    <rect x="80" y="200" width="560" height="16" rx="4" fill="#4a3018" opacity="0.8"/>
+    <rect x="80" y="216" width="560" height="80" rx="0" fill="#3a2410" opacity="0.6"/>
+    <!-- Table cloth detail -->
+    <rect x="76" y="198" width="568" height="8" rx="3" fill="#e8d8b8" opacity="0.2"/>
+    <!-- Candles along table -->
+    <g opacity="0.8">
+      <rect x="150" y="170" width="8" height="30" rx="2" fill="#f0e8c0" opacity="0.7"/>
+      <ellipse cx="154" cy="162" rx="7" ry="11" fill="#f0a820" opacity="0.7"/>
+      <rect x="280" y="165" width="8" height="35" rx="2" fill="#f0e8c0" opacity="0.7"/>
+      <ellipse cx="284" cy="156" rx="7" ry="11" fill="#f0a820" opacity="0.65"/>
+      <rect x="420" y="168" width="8" height="32" rx="2" fill="#f0e8c0" opacity="0.7"/>
+      <ellipse cx="424" cy="160" rx="7" ry="11" fill="#f0a820" opacity="0.7"/>
+      <rect x="550" y="172" width="8" height="28" rx="2" fill="#f0e8c0" opacity="0.7"/>
+      <ellipse cx="554" cy="164" rx="7" ry="11" fill="#f0a820" opacity="0.65"/>
+    </g>
+    <!-- Flowers centerpiece -->
+    <g opacity="0.65">
+      <rect x="332" y="178" width="16" height="22" rx="3" fill="#c0900" opacity="0.5"/>
+      <line x1="340" y1="176" x2="325" y2="140" stroke="#5a7a40" stroke-width="1.5"/>
+      <line x1="340" y1="176" x2="342" y2="132" stroke="#5a7a40" stroke-width="1.5"/>
+      <line x1="340" y1="176" x2="356" y2="142" stroke="#5a7a40" stroke-width="1.5"/>
+      <circle cx="325" cy="136" r="11" fill="#c07060" opacity="0.8"/>
+      <circle cx="342" cy="128" r="13" fill="#d08070" opacity="0.75"/>
+      <circle cx="356" cy="138" r="10" fill="#b06050" opacity="0.7"/>
+    </g>
+    <!-- Wine glasses -->
+    <g fill="none" stroke="#d4c8a8" stroke-width="1.1" opacity="0.7">
+      <path d="M200 196 Q200 218 190 226 L210 226 Q200 218 200 196Z"/>
+      <rect x="197" y="226" width="6" height="16" rx="1"/>
+      <rect x="189" y="242" width="22" height="2.5" rx="1.2"/>
+      <path d="M360" y="196 Q360 218 350 226 L370 226 Q360 218 360 196Z"/>
+      <path d="M360 196 Q360 218 350 226 L370 226 Q360 218 360 196Z"/>
+      <rect x="357" y="226" width="6" height="16" rx="1"/>
+      <rect x="349" y="242" width="22" height="2.5" rx="1.2"/>
+      <path d="M500 196 Q500 218 490 226 L510 226 Q500 218 500 196Z"/>
+      <rect x="497" y="226" width="6" height="16" rx="1"/>
+      <rect x="489" y="242" width="22" height="2.5" rx="1.2"/>
+    </g>
+    <!-- Chairs (top view silhouettes) -->
+    <g fill="#1a1008" opacity="0.7">
+      <rect x="120" y="145" width="55" height="45" rx="20"/>
+      <rect x="240" y="145" width="55" height="45" rx="20"/>
+      <rect x="360" y="145" width="55" height="45" rx="20"/>
+      <rect x="480" y="145" width="55" height="45" rx="20"/>
+      <rect x="600" y="145" width="55" height="45" rx="20"/>
+      <rect x="120" y="300" width="55" height="45" rx="20"/>
+      <rect x="240" y="300" width="55" height="45" rx="20"/>
+      <rect x="360" y="300" width="55" height="45" rx="20"/>
+      <rect x="480" y="300" width="55" height="45" rx="20"/>
+      <rect x="600" y="300" width="55" height="45" rx="20"/>
+    </g>
+    <!-- Plates -->
+    <g opacity="0.25">
+      <ellipse cx="147" cy="210" rx="22" ry="6" fill="#e8e0d0"/>
+      <ellipse cx="267" cy="210" rx="22" ry="6" fill="#e8e0d0"/>
+      <ellipse cx="430" cy="210" rx="22" ry="6" fill="#e8e0d0"/>
+      <ellipse cx="552" cy="210" rx="22" ry="6" fill="#e8e0d0"/>
+      <ellipse cx="628" cy="210" rx="22" ry="6" fill="#e8e0d0"/>
+    </g>
+  </svg>
+
+  <div class="private-content">
+    <h2>Private Dining &amp; Events</h2>
+    <p>From intimate gatherings to special celebrations, we create unforgettable experiences for you.</p>
+    <a href="#" class="btn-primary">Enquire Now</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="name">Aurum</div>
+    <div class="sub">Café &amp; Bistro</div>
+  </div>
+  <div class="footer-col">
+    <h5>Open Daily</h5>
+    <p>8:00 AM – 11:00 PM</p>
+  </div>
+  <div class="footer-col">
+    <h5>Location</h5>
+    <p>23, Greenways Road,<br/>Bengaluru, India</p>
+  </div>
+  <div class="footer-col">
+    <h5>Follow Us</h5>
+    <div class="social-links">
+      <a href="#" title="Facebook">f</a>
+      <a href="#" title="Instagram">in</a>
+      <a href="#" title="Twitter">𝕏</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
